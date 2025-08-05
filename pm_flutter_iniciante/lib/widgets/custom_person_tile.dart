@@ -4,7 +4,7 @@ import 'package:desenvolvimento_flutter_iniciante/widgets/pessoa_dialog.dart';
 import 'package:flutter/material.dart';
 
 class CustomPersonTile extends StatelessWidget {
-  final Function(Pessoa pessoa) onDeletePessoa;
+  final void Function(Pessoa pessoa) onDeletePessoa;
   final Pessoa pessoa;
   const CustomPersonTile({
     super.key,
