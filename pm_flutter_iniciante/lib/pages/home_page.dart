@@ -1,5 +1,7 @@
+import 'package:desenvolvimento_flutter_iniciante/extensions/extensions.dart';
 import 'package:desenvolvimento_flutter_iniciante/models/criar_pesso_dto.dart';
 import 'package:desenvolvimento_flutter_iniciante/models/pessoa.dart';
+import 'package:desenvolvimento_flutter_iniciante/pages/criar_pessoa_page.dart';
 import 'package:desenvolvimento_flutter_iniciante/routes/routes.dart';
 import 'package:desenvolvimento_flutter_iniciante/widgets/lista_pessoas.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Pessoa> pessoas = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListaPessoas(
         pessoas: pessoas,
-        onDeletePessoa: (pessoa) {
+        onDeletePessoa: (Pessoa pessoa) {
           pessoas.remove(pessoa);
           setState(() {});
         },
@@ -35,19 +36,18 @@ class _HomePageState extends State<HomePage> {
 
           if (result != null) {
             final pessoaDto = result as CriarPessoDto;
-
             final pessoa = Pessoa(
               id: pessoas.length + 1,
               nome: pessoaDto.nome,
               altura: pessoaDto.altura,
               peso: pessoaDto.peso,
             );
-
             pessoas.add(pessoa);
             setState(() {});
           }
 
-          print("resultado: $result");
+          print('result: $result');
+
           // context.pushNamed(Routes.criarPessoaPage);
 
           // Navigator.of(context).pushAndRemoveUntil(

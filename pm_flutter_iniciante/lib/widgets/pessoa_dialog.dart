@@ -4,8 +4,8 @@ import 'package:desenvolvimento_flutter_iniciante/widgets/default_dialog_contain
 import 'package:flutter/material.dart';
 
 class PessoaDialog extends StatelessWidget {
-  final void Function(Pessoa pessoa) onDeletePessoa;
   final Pessoa pessoa;
+  final Function(Pessoa pessoa) onDeletePessoa;
   const PessoaDialog({
     super.key,
     required this.pessoa,
@@ -26,7 +26,7 @@ class PessoaDialog extends StatelessWidget {
                 Navigator.of(context).pop();
               },
               child: Text(
-                "Excluir",
+                "EXCLUIR",
                 style: TextStyle(
                   color: Colors.black,
                 ),
