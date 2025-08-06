@@ -6,11 +6,25 @@ import 'controllers/theme_controller.dart';
 import 'routes/router.dart';
 import 'routes/routes.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final themeController = GetIt.instance<ThemeController>();
+
+  @override
+  void initState() {
+    super.initState();
+    //carregando o tema salvo
+    //para que o tema seja carregado antes de renderizar o app
+    themeController.getTheme();
+  }
   @override
   Widget build(BuildContext context) {
-    final themeController = GetIt.instance<ThemeController>();
     return ListenableBuilder(
         listenable: themeController,
         builder: (context, child) {
