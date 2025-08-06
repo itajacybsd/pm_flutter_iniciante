@@ -1,10 +1,10 @@
-import 'package:desenvolvimento_flutter_iniciante/controllers/pessoa_controller.dart';
-import 'package:desenvolvimento_flutter_iniciante/models/criar_pesso_dto.dart';
-import 'package:desenvolvimento_flutter_iniciante/models/pessoa.dart';
-import 'package:desenvolvimento_flutter_iniciante/routes/routes.dart';
-import 'package:desenvolvimento_flutter_iniciante/widgets/lista_pessoas.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+
+import '../controllers/pessoa_controller.dart';
+import '../models/criar_pesso_dto.dart';
+import '../routes/routes.dart';
+import '../widgets/lista_pessoas.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

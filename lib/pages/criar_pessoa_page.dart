@@ -1,6 +1,7 @@
-import 'package:desenvolvimento_flutter_iniciante/models/criar_pesso_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../models/criar_pesso_dto.dart';
 
 class CriarPessoaPage extends StatefulWidget {
   const CriarPessoaPage({super.key});

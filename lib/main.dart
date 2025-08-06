@@ -1,8 +1,8 @@
-import 'package:desenvolvimento_flutter_iniciante/dependencies/injector.dart';
-import 'package:desenvolvimento_flutter_iniciante/routes/router.dart';
-import 'package:desenvolvimento_flutter_iniciante/routes/routes.dart';
-
 import 'package:flutter/material.dart';
+
+import 'dependencies/injector.dart';
+import 'routes/router.dart';
+import 'routes/routes.dart';
 
 void main() {
   injector();

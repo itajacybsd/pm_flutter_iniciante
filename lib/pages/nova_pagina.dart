@@ -1,4 +1,4 @@
-import 'package:desenvolvimento_flutter_iniciante/extensions/extensions.dart';
+import '../extensions/extensions.dart';
 import 'package:flutter/material.dart';
 
 class NovaPagina extends StatelessWidget {

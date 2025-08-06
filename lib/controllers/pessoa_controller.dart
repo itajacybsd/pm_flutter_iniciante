@@ -1,6 +1,7 @@
-import 'package:desenvolvimento_flutter_iniciante/models/criar_pesso_dto.dart';
-import 'package:desenvolvimento_flutter_iniciante/models/pessoa.dart';
 import 'package:flutter/material.dart';
+
+import '../models/criar_pesso_dto.dart';
+import '../models/pessoa.dart';
 
 class PessoaController extends ChangeNotifier {
   List<Pessoa> _pessoas = [];

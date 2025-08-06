@@ -1,7 +1,8 @@
-import 'package:desenvolvimento_flutter_iniciante/models/pessoa.dart';
-import 'package:desenvolvimento_flutter_iniciante/widgets/custom_tile.dart';
-import 'package:desenvolvimento_flutter_iniciante/widgets/pessoa_dialog.dart';
 import 'package:flutter/material.dart';
+
+import '../models/pessoa.dart';
+import 'custom_tile.dart';
+import 'pessoa_dialog.dart';
 
 class CustomPersonTile extends StatelessWidget {
   final Pessoa pessoa;

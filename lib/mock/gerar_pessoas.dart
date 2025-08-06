@@ -1,5 +1,6 @@
-import 'package:desenvolvimento_flutter_iniciante/models/pessoa.dart';
 import 'package:faker/faker.dart';
+
+import '../models/pessoa.dart';
 
 List<Pessoa> gerarPessoas(int quantidade) {
   final faker = Faker();
