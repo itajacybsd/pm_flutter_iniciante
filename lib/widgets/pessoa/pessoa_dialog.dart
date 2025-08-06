@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import '../extensions/extensions.dart';
-import '../controllers/pessoa_controller.dart';
-import '../models/pessoa.dart';
-import 'default_dialog_container.dart';
+import '../../extensions/extensions.dart';
+import '../../controllers/pessoa_controller.dart';
+import '../../models/pessoa.dart';
+import '../core/default_dialog_container.dart';
 
 class PessoaDialog extends StatelessWidget {
   final Pessoa pessoa;

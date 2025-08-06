@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../extensions/extensions.dart';
-import '../models/pessoa.dart';
+import '../../extensions/extensions.dart';
+import '../../models/pessoa.dart';
 
 class PessoaListTile extends StatefulWidget {
   final Pessoa pessoa;

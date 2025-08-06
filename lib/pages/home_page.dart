@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 
 import '../controllers/pessoa_controller.dart';
 import '../routes/routes.dart';
-import '../widgets/lista_pessoas.dart';
+import '../widgets/pessoa/lista_pessoas.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.greenAccent,
+        // backgroundColor: Colors.greenAccent,
         onPressed: () {
           Navigator.of(context).pushNamed(Routes.criarPessoaPage);
         },

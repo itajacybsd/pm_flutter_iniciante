@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/pessoa.dart';
-import 'custom_tile.dart';
+import '../../models/pessoa.dart';
+import '../core/custom_tile.dart';
 import 'pessoa_dialog.dart';
 
 class CustomPersonTile extends StatelessWidget {
