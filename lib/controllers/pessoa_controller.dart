@@ -4,7 +4,7 @@ import '../models/criar_pesso_dto.dart';
 import '../models/pessoa.dart';
 
 class PessoaController extends ChangeNotifier {
-  List<Pessoa> _pessoas = [];
+  final List<Pessoa> _pessoas = [];
   List<Pessoa> get pessoas => _pessoas;
 
   void adicionarPessoa(CriarPessoaDto criarPessoa) {
@@ -16,6 +16,7 @@ class PessoaController extends ChangeNotifier {
     );
 
     _pessoas.add(pessoa);
+    notifyListeners();
   }
 
   void removerPessoa(Pessoa pessoa) {

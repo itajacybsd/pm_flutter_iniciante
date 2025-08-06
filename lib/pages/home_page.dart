@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import '../controllers/pessoa_controller.dart';
-import '../models/criar_pesso_dto.dart';
 import '../routes/routes.dart';
 import '../widgets/lista_pessoas.dart';
 
@@ -18,10 +17,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    pessoaController.addListener(() {
-      setState(() {});
-    });
     super.initState();
+    // pessoaController.addListener(listener);
+  }
+
+  // void listener() {
+  //   setState(() {});
+  // }
+
+  @override
+  void dispose() {
+    super.dispose();
+    // pessoaController.removeListener(listener);
   }
 
   @override
@@ -30,32 +37,18 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Meu primeiro App."),
       ),
-      body: ListaPessoas(
-        pessoas: pessoaController.pessoas,
+      body: ListenableBuilder(
+        listenable: pessoaController,
+        builder: (context, child) {
+          return ListaPessoas(
+            pessoas: pessoaController.pessoas,
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.greenAccent,
-        onPressed: () async {
-          final result =
-              await Navigator.of(context).pushNamed(Routes.criarPessoaPage);
-
-          if (result != null) {
-            final pessoaDto = result as CriarPessoaDto;
-            pessoaController.adicionarPessoa(pessoaDto);
-            setState(() {});
-          }
-
-          print("resultado: $result");
-          // context.pushNamed(Routes.criarPessoaPage);
-
-          // Navigator.of(context).pushAndRemoveUntil(
-          //   MaterialPageRoute(
-          //     builder: (context) {
-          //       return NovaPagina();
-          //     },
-          //   ),
-          //   (route) => false,
-          // );
+        onPressed: () {
+          Navigator.of(context).pushNamed(Routes.criarPessoaPage);
         },
         child: Icon(Icons.navigate_next),
       ),
