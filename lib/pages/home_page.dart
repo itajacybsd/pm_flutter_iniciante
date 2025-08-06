@@ -1,7 +1,9 @@
+import 'package:desenvolvimento_flutter_iniciante/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import '../controllers/pessoa_controller.dart';
+import '../controllers/theme_controller.dart';
 import '../routes/routes.dart';
 import '../widgets/pessoa/lista_pessoas.dart';
 
@@ -14,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final pessoaController = GetIt.instance<PessoaController>();
+  final themeController = GetIt.instance<ThemeController>();
 
   @override
   void initState() {
@@ -34,6 +37,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Switch(
+                value: themeController.darkTheme,
+                onChanged: (value) {
+                  themeController.toggleTheme(value);
+                }),
+            Text("Tema Escuro"),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text("Meu primeiro App."),
       ),
