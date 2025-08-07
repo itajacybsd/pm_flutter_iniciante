@@ -22,27 +22,33 @@ class _HomePageState extends State<HomePage> {
     themeController.mensagemNotifier.addListener(_onThemeMensagem);
     pessoaController.mensagemNotifier.addListener(_onPessoaMensagem);
     super.initState();
-    // pessoaController.addListener(listener);
   }
 
   void _onThemeMensagem() {
-    print("Mensagem: ${themeController.mensagemNotifier.value}");
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.green,
+        content: Text(themeController.mensagemNotifier.value),
+      ),
+    );
   }
 
   void _onPessoaMensagem() {
-    print("Mensagem: ${pessoaController.mensagemNotifier.value}");
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.green,
+        content: Text(pessoaController.mensagemNotifier.value),
+      ),
+    );
   }
-
-  // void listener() {
-  //   setState(() {});
-  // }
 
   @override
   void dispose() {
     pessoaController.mensagemNotifier.removeListener(_onPessoaMensagem);
     themeController.mensagemNotifier.removeListener(_onThemeMensagem);
     super.dispose();
-    // pessoaController.removeListener(listener);
   }
 
   @override
@@ -73,7 +79,6 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        // backgroundColor: Colors.greenAccent,
         onPressed: () {
           Navigator.of(context).pushNamed(Routes.criarPessoaPage);
         },
