@@ -1,3 +1,4 @@
+import 'package:desenvolvimento_flutter_iniciante/states/messages_states.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -36,12 +37,24 @@ class _HomePageState extends State<HomePage> {
 
   void _onPessoaMensagem() {
     ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.green,
-        content: Text(pessoaController.mensagemNotifier.value),
-      ),
-    );
+
+    if (pessoaController.mensagemNotifier.value is SuccessMessage) {
+      final value = pessoaController.mensagemNotifier.value as SuccessMessage;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
+          content: Text(value.message),
+        ),
+      );
+    } else if (pessoaController.mensagemNotifier.value is ErrorMessage) {
+      final value = pessoaController.mensagemNotifier.value as ErrorMessage;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(value.message),
+        ),
+      );
+    }
   }
 
   @override
