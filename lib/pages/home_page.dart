@@ -27,12 +27,23 @@ class _HomePageState extends State<HomePage> {
 
   void _onThemeMensagem() {
     ScaffoldMessenger.of(context).clearSnackBars();
+    final value = themeController.mensagemNotifier.value;
+    if (value is SuccessMessage) {
+      
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.green,
-        content: Text(themeController.mensagemNotifier.value),
+          content: Text(value.message),
       ),
     );
+    } else if (value is ErrorMessage) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(value.message),
+        ),
+      );
+    }
   }
 
   void _onPessoaMensagem() {
