@@ -33,7 +33,7 @@ class PessoaController extends ChangeNotifier {
 
   void removerPessoa(Pessoa pessoa) {
     _pessoas.remove(pessoa);
-    mensagemNotifier.value = ErrorMessage("Pessoa removida com sucesso!");
+    mensagemNotifier.value = SuccessMessage("Pessoa removida com sucesso!");
     notifyListeners();
   }
 }
