@@ -20,8 +20,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    pessoaController.listarPessoas();
     themeController.mensagemNotifier.addListener(_onThemeMensagem);
     pessoaController.mensagemNotifier.addListener(_onPessoaMensagem);
+
     super.initState();
   }
 
@@ -29,13 +31,12 @@ class _HomePageState extends State<HomePage> {
     ScaffoldMessenger.of(context).clearSnackBars();
     final value = themeController.mensagemNotifier.value;
     if (value is SuccessMessage) {
-      
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.green,
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
           content: Text(value.message),
-      ),
-    );
+        ),
+      );
     } else if (value is ErrorMessage) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
