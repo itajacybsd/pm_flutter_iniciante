@@ -98,6 +98,11 @@ class _HomePageState extends State<HomePage> {
       body: ListenableBuilder(
         listenable: pessoaController,
         builder: (context, child) {
+          if (pessoaController.loading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
           return ListaPessoas(
             pessoas: pessoaController.pessoas,
           );
