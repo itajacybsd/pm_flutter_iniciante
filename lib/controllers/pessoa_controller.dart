@@ -63,6 +63,9 @@ class PessoaController extends ChangeNotifier {
       mensagemNotifier.value = SuccessMessage("Pessoa removida com sucesso!");
       notifyListeners();
     } on Exception catch (error) {
+      print('Erro ao remover pessoa: $error');
+      mensagemNotifier.value =
+          ErrorMessage("Ocorreu um erro ao remover pessoa: $error");
     } finally {
       notifyListeners();
     }

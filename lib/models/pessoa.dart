@@ -23,6 +23,15 @@ class Pessoa {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'id': id,
+      'nome': nome,
+      'altura': altura,
+      'peso': peso,
+    };
+  }
+
   // Map<String, dynamic> toMap() {
   //   return <String, dynamic>{
   //     'id': id,
