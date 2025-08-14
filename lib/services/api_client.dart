@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:desenvolvimento_flutter_iniciante/models/criar_pesso_dto.dart';
 import 'package:dio/dio.dart';
@@ -7,7 +6,7 @@ import '../models/pessoa.dart';
 
 class ApiClient {
   final Dio dio = Dio();
-  String host = "http://10.0.11.2:3000/pessoas";
+  String host = "http://192.168.7.7:3000/pessoas";
 
   Future<List<Pessoa>> get() async {
     final request = await dio.get(host);

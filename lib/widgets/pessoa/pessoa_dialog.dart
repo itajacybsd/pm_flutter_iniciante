@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import '../../extensions/extensions.dart';
 import '../../controllers/pessoa_controller.dart';
 import '../../models/pessoa.dart';
+import '../../routes/routes.dart';
 import '../core/default_dialog_container.dart';
 
 class PessoaDialog extends StatelessWidget {
@@ -28,6 +29,21 @@ class PessoaDialog extends StatelessWidget {
               },
               child: Text(
                 "Excluir",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              onPressed: () {
+                Navigator.of(context).pushNamed(Routes.criarPessoaPage,
+                    arguments: {"pessoa": pessoa});
+                // pessoaController.removerPessoa(pessoa);
+                // if (context.mounted) Navigator.of(context).pop();
+              },
+              child: Text(
+                "Editar",
                 style: TextStyle(
                   color: Colors.black,
                 ),

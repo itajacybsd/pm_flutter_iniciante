@@ -4,9 +4,11 @@ import 'package:get_it/get_it.dart';
 
 import '../controllers/pessoa_controller.dart';
 import '../models/criar_pesso_dto.dart';
+import '../models/pessoa.dart';
 
 class CriarPessoaPage extends StatefulWidget {
-  const CriarPessoaPage({super.key});
+  final Pessoa? pessoa;
+  const CriarPessoaPage({super.key, required this.pessoa});
 
   @override
   State<CriarPessoaPage> createState() => _CriarPessoaPageState();
@@ -20,6 +22,23 @@ class _CriarPessoaPageState extends State<CriarPessoaPage> {
   final formKey = GlobalKey<FormState>();
 
   final pessoaController = GetIt.instance<PessoaController>();
+  bool isEditing = false;
+
+  @override
+  void initState() {
+    if (widget.pessoa != null) {
+      print("Pessoa: ${widget.pessoa!.toJson()}");
+      isEditing = true;
+      Pessoa pessoa = widget.pessoa!;
+      nomeController.text = pessoa.nome;
+      alturaController.text = pessoa.altura.toString();
+      pesoController.text = pessoa.peso.toString().replaceAll(".", ",");
+      // nomeController.text = widget.pessoa!.nome;
+      // pesoController.text = widget.pessoa!.peso.toString();
+      // alturaController.text = widget.pessoa!.altura.toString();
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,15 +115,27 @@ class _CriarPessoaPageState extends State<CriarPessoaPage> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (formKey.currentState?.validate() == true) {
-                          final criarPessoa = CriarPessoaDto(
-                            nome: nomeController.text,
-                            altura: int.parse(alturaController.text),
-                            peso: double.parse(
-                                pesoController.text.replaceAll(",", ".")),
-                          );
-                          pessoaController.adicionarPessoa(criarPessoa);
+                          if (!isEditing) {
+                            final criarPessoa = CriarPessoaDto(
+                              nome: nomeController.text,
+                              altura: int.parse(alturaController.text),
+                              peso: double.parse(
+                                  pesoController.text.replaceAll(",", ".")),
+                            );
+                            await pessoaController.adicionarPessoa(criarPessoa);
+                          } else {
+                            final pessoaAtualizada = widget.pessoa!.copyWith(
+                              nome: nomeController.text,
+                              altura: int.parse(alturaController.text),
+                              peso: double.parse(
+                                  pesoController.text.replaceAll(",", ".")),
+                            );
+                            await pessoaController
+                                .atualizarPessoa(pessoaAtualizada);
+                          }
+
                           Navigator.of(context).pop();
                         }
                       },
