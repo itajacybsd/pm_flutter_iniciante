@@ -9,12 +9,14 @@ class PessoaController extends ChangeNotifier {
   List<Pessoa> _pessoas = [];
   List<Pessoa> get pessoas => _pessoas;
 
-  final ApiClient apiClient = ApiClient();
+  final ApiClient apiClient;
 
   ValueNotifier<MessagesStates> mensagemNotifier =
       ValueNotifier(IddleMessage());
 
   bool _loading = false;
+
+  PessoaController({required this.apiClient});
   bool get loading => _loading;
 
   void listarPessoas() async {
@@ -24,9 +26,7 @@ class PessoaController extends ChangeNotifier {
       await Future.delayed(const Duration(seconds: 2));
       final pessoas = await apiClient.get();
       _pessoas = pessoas;
-    } on Exception catch (error) {
-      // TODO : TRATAMENTO DE ERROS
-      print('error ao listar pessoas: $error');
+    } on Exception catch (_) {
     } finally {
       _loading = false;
       notifyListeners();
@@ -35,7 +35,6 @@ class PessoaController extends ChangeNotifier {
 
   Future<void> adicionarPessoa(CriarPessoaDto criarPessoa) async {
     try {
-
       final pessoa = await apiClient.post(criarPessoa);
 
       _pessoas.add(pessoa);
@@ -60,14 +59,12 @@ class PessoaController extends ChangeNotifier {
       mensagemNotifier.value = SuccessMessage("Pessoa atualizada com sucesso!");
     } catch (error) {
       mensagemNotifier.value =
-          ErrorMessage("Ocorreu um erro ao atualizar pessoa: $error");
+          ErrorMessage("Ocorreu um erro ao atualizar pessoa:");
       return;
     } finally {
       notifyListeners();
     }
   }
-
-
 
   void removerPessoa(Pessoa pessoa) async {
     try {
@@ -76,7 +73,6 @@ class PessoaController extends ChangeNotifier {
       mensagemNotifier.value = SuccessMessage("Pessoa removida com sucesso!");
       notifyListeners();
     } on Exception catch (error) {
-      print('Erro ao remover pessoa: $error');
       mensagemNotifier.value =
           ErrorMessage("Ocorreu um erro ao remover pessoa: $error");
     } finally {
