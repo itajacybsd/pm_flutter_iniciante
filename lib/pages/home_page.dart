@@ -103,16 +103,23 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             );
           }
-          return ListaPessoas(
-            pessoas: pessoaController.pessoas,
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListaPessoas(
+              pessoas: pessoaController.pessoas,
+            ),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
+        
         onPressed: () {
           Navigator.of(context).pushNamed(Routes.criarPessoaPage);
         },
-        child: Icon(Icons.navigate_next),
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).iconTheme.color,
+        ),
       ),
     );
   }
